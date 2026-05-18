@@ -1,37 +1,36 @@
-from character import Dog, Cat
+from character import Hero, Villain
 from file_utils import get_random_from_file
 
-dog_name = get_random_from_file(r"data/dogs.txt")
-dog_weapon = get_random_from_file(r"data/weapons.txt")
+hero_name = get_random_from_file(r"data/heroes.txt")
+hero_weapon = get_random_from_file(r"data/weapons.txt")
+villain_name = get_random_from_file(r"data/villains.txt")
+villain_weapon = get_random_from_file(r"data/weapons.txt")
 
-cat_name = get_random_from_file(r"data/cats.txt")
-cat_weapon = get_random_from_file(r"data/weapons.txt")
-
-dog = Dog(dog_name, dog_weapon)
-cat = Cat(cat_name, cat_weapon)
+hero = Hero(hero_name, hero_weapon)
+villain = Villain(villain_name, villain_weapon)
 
 print("=== BATTLE Begins ===")
 
-print(f"Dog: {dog.name} | HP: {dog.hp} | Weapon: {dog.weapon}")
-print(f"Cat: {cat.name} | HP: {cat.hp} | Weapon: {cat.weapon}")
+print(f"Hero: {hero.name} | HP: {hero.hp} | Weapon: {hero.weapon}")
+print(f"Villain: {villain.name} | HP: {villain.hp} | Weapon: {villain.weapon}")
 
 round_number = 1
 
-while dog.is_alive() and cat.is_alive():
+while hero.is_alive() and villain.is_alive():
     print(f"--- Round {round_number} ---")
 
-    dog.attack(cat)
+    hero.attack(villain)
 
-    if not cat.is_alive():
+    if not villain.is_alive():
         break
 
-    cat.attack(dog)
+    villain.attack(hero)
 
-    round_number += 1
+    round_number = round_number + 1
 
 print("=== BATTLE ENDS ===")
 
-if dog.is_alive():
-    print("Dog wins!")
+if hero.is_alive():
+    print("Hero saves the day!")
 else:
-    print("Cat wins!")
+    print("Dark side wins!")
